@@ -1,42 +1,14 @@
 const express = require('express');
-const mysql = require('mysql2')
+const cors = require('cors')
+const productCategories = require('./routes/productCategroies')
+const products = require('./routes/products')
+
 const app = express();
 
-const pool = mysql.createPool(
-    {
-        host: '127.0.0.1',
-        user: '',
-        password: '',
-        database: '',
-        port: 3306,
-        multipleStatements: true
-    });
 
-
-app.get('/', (req, res) => {
-    pool.query('select * from categories', (error, categories) => {
-        if (error) {
-            res.status(400).send(error);
-        } else {
-            res.status(200).send(categories);
-        }
-    });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.use(cors())
+app.use('/productCategories', productCategories)
+app.use('/products',products)
 
 const port = 3000
 const server = app.listen(port, () => {
