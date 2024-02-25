@@ -12,10 +12,10 @@ router.get('/', (req, res) => {
         query += ' where category_id =' + subCategoryId;
     }
     if (mainCategoryId) {
-        query += `select products. * from products , categories 
+        query = `select products. * from products , categories 
         where products.category_id = categories.id and categories.parent_category_id
         =${mainCategoryId}`;
-    }
+    } 
     pool.query(query, (error, products) => {
         if (error) {
             res.status(404).send(error);
