@@ -4,7 +4,19 @@ const pool = require('../share/pool');
 
 
 router.get('/', (req, res) => {
-    pool.query('select * from products', (error, products) => {
+    let mainCategoryId = req.query.mainCategoryId;
+    let subCategoryId = req.query.subCategoryId;
+
+    let query = 'select * from products';
+    if (subCategoryId) {
+        query += ' where category_id =' + subCategoryId;
+    }
+    if (mainCategoryId) {
+        query += `select products. * from products , categories 
+        where products.category_id = categories.id and categories.parent_category_id
+        =${mainCategoryId}`;
+    }
+    pool.query(query, (error, products) => {
         if (error) {
             res.status(404).send(error);
         } else {
@@ -15,7 +27,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     const id = req.params.id
-    pool.query('select * from products where id = ' + id , (error,product)=>{
+    pool.query('select * from products where id = ' + id, (error, product) => {
         if (error) {
             res.status(404).send(error);
         } else {
