@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../share/pool');
 
-
 router.get('/', (req, res) => {
     let mainCategoryId = req.query.mainCategoryId;
     let subCategoryId = req.query.subCategoryId;
