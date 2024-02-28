@@ -77,6 +77,7 @@ router.post("/login", (req, res) => {
                             );
                             res.status(200).send({
                                 token: token,
+                                expireInSeconds: 3600
                             });
                         } else {
                             res.status(401).send({
