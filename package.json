@@ -4,7 +4,8 @@
   "description": "Learning node.js , express , mysql",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "SET NODE_ENV=production&& nodemon server.js"
   },
   "keywords": [],
   "author": "",
