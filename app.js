@@ -14,10 +14,13 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(cors())
 app.use(bodyparser.json());
+app.get('/api/get', (req, res) => {
+    res.send({ message: "hello back to nodejs" })
+})
 app.use('/productCategories', productCategories);
 app.use('/products', products);
 app.use('/users', users);
 app.use('/orders', orders);
- 
+
 
 module.exports = app;
