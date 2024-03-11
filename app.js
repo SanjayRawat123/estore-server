@@ -22,7 +22,9 @@ app.get('/api/get_user_details', (req, res) => {
         user: {
             name: "satyam",
             age: 22,
-            contact: 12254
+            contact: 12254,
+            env:process.env.NODE_ENV
+
         }
     })
 });
