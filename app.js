@@ -10,6 +10,7 @@ const app = express();
 
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
+    console.log("hello",process.env.NODE_ENV)
 }
 
 app.use(cors())
@@ -23,7 +24,7 @@ app.get('/api/get_user_details', (req, res) => {
             name: "satyam",
             age: 22,
             contact: 12254,
-            env:process.env.NODE_ENV
+            env: process.env.NODE_ENV
 
         }
     })
