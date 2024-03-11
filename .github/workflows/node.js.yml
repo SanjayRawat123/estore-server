@@ -27,7 +27,7 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: |
-          touch.env
+          touch .env
           echo "${{ secrets.PROD }}" > .env
     - run: pm2 restart Backend 
     
