@@ -17,6 +17,15 @@ app.use(bodyparser.json());
 app.get('/api/get', (req, res) => {
     res.send({ message: "hello back to nodejs" })
 })
+app.get('/api/get_user_details', (req, res) => {
+    res.send({
+        user: {
+            name: "satyam",
+            age: 22,
+            contact: 12254
+        }
+    })
+});
 app.use('/productCategories', productCategories);
 app.use('/products', products);
 app.use('/users', users);
