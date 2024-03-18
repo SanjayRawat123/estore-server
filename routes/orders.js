@@ -122,7 +122,7 @@ router.get('/orderproducts', checkToken, (req, res) => {
   try {
     let orderId = req.query.orderId;
     pool.query(
-      `select orderdetails.*, products.product_name ,products.product_img from orderDetails, products 
+      `select orderdetails.*, products.product_name ,products.product_img from orderdetails, products 
                     where orderdetails.productId = products.id and orderId = ${orderId}`,
       (error, orderProducts) => {
         if (error) {
