@@ -25,9 +25,9 @@ router.post('/add', checkToken, (req, res) => {
         } else {
           if (user.length > 0) {
             let userId = user[0].id;
-            const query = `insert into orders (userId, userName,address,city,state,pin,total)
+            const query = `insert into orders (userId,orderDate,userName,address,city,state,pin,total)
             values
-            (${userId},'${userName}','${address}','${city}','${state}','${pin}',${total});select LAST_INSERT_ID()`;
+            (${userId},'${orderDate}','${userName}','${address}','${city}','${state}','${pin}',${total});select LAST_INSERT_ID()`;
             pool.query(query, (error, result) => {
               if (error) {
                 res.status(401).send({
@@ -123,7 +123,7 @@ router.get('/orderproducts', checkToken, (req, res) => {
     let orderId = req.query.orderId;
     pool.query(
       `select orderdetails.*, products.product_name ,products.product_img from orderDetails, products 
-                    where orderDetails.productId = products.id and orderId = ${orderId}`,
+                    where orderdetails.productId = products.id and orderId = ${orderId}`,
       (error, orderProducts) => {
         if (error) {
           res.status(500).send({
